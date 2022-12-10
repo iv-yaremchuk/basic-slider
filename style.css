@@ -23,6 +23,7 @@
 :root {
   --color-white: #ffffff;
   --color-harvestgold: #e3b873;
+  --color-bronzegold: #d48609;
   --color-black: #181818;
   --color-codgray: #131313;
   --color-mineshaft: #363636;
@@ -160,22 +161,28 @@ p {
   transition: color 0.2s linear;
 }
 
-.projects-object__btn:hover {
+.projects-object__btn:hover,
+.projects-object__btn:focus-visible {
   color: var(--color-harvestgold);
+}
+
+.projects-object__btn:active {
+  color: var(--color-bronzegold);
 }
 
 .projects-object__btn hr {
   margin: 0;
   margin-top: -7px;
   border-color: transparent;
+  transition: border-color 0.2s linear;
 }
 
 .projects-object__btn.is-active,
 .is-active hr {
   color: var(--color-harvestgold);
   border-color: var(--color-harvestgold);
+  pointer-events: none;
 }
-
 
 .projects-content__wrap {
   display: flex;
@@ -183,6 +190,7 @@ p {
 }
 
 .projects-content-text {
+  max-width: 442px;
   margin-right: 50px;
 }
 
@@ -217,21 +225,28 @@ p {
 .projects-params__descr {
   font-size: 13px;
   line-height: 21px;
+  transition: opacity 0.2s linear;
 }
 
 .projects-slider-nav {
   display: flex;
   align-items: center;
+  transition: opacity 0.2s linear;
+}
+
+.projects-slider-nav__btn:hover path,
+.projects-slider-nav__btn:focus-visible path {
+  fill: var(--color-harvestgold);
+  transition: fill 0.2s linear;
+}
+
+.projects-slider-nav__btn:active path {
+  fill: var(--color-bronzegold);
+  transition: fill 0.2s linear;
 }
 
 .projects-slider-nav__btn.prev {
   margin-right: 29px;
-}
-
-.projects-slider-nav__btn.prev:hover path,
-.projects-slider-nav__btn.next:hover path {
-  fill: var(--color-harvestgold);
-  transition: fill 0.2s linear;
 }
 
 .projects-slider-pagination__wrap {
@@ -244,6 +259,9 @@ p {
   height: 10px;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 30px;
+  transition: background-color 0.2s linear;
+  outline: none;
+  cursor: pointer;
 }
 
 .slider-pagination-bullet:not(:last-child) {
@@ -254,6 +272,17 @@ p {
   background-color: var(--color-white);
 }
 
+.slider-pagination-bullet.is-active:hover {
+  background-color: var(--color-white);
+}
+
+.slider-pagination-bullet:hover,
+.slider-pagination-bullet:focus-visible {
+  background-color: var(--color-dustygray);
+}
+.slider-pagination-bullet:active {
+  background-color: var(--color-white);
+}
 .projects-slider-nav__btn.next {
 }
 
@@ -264,21 +293,44 @@ p {
   background-color: transparent;
 }
 
+.projects-content-slider {
+  max-width: 679px;
+  min-height: 484px;
+}
+
 .projects-content-slider.mobile {
   display: none;
 }
 
 .projects-content-image {
   display: none;
-  max-width: 679px;
-  height: 485px;
+  width: 100%;
+  height: 484px;
   object-fit: fill;
+  opacity: 0;
 }
 
 .projects-content-image.is-active {
   display: flex;
+  opacity: 1;
+  animation: fadeIn 0.2s linear;
 }
 
 .projects-content-image.mobile {
   display: none;
+}
+
+@keyframes fadeIn {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: flex;
+    opacity: 0;
+  }
+  100% {
+    display: flex;
+    opacity: 1;
+  }
 }
