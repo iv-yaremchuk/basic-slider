@@ -1,4 +1,5 @@
-
+// Создаём объекты содержащие в себе изображения и текст,
+// заменяемые при смене раздела в секции Projects
 const projectsAdmiral = {
   images: [
     './img/projects/projects-admiral-first.jpg',
@@ -37,18 +38,25 @@ const sliderNavigation = document.querySelector('.projects-slider-nav');
 const sliderPaginationBullets = document.querySelector(
   '.projects-slider-pagination__wrap'
 );
+
+// создаём объект содержащий дополнительные параметры слайдера,
+// такие как пагинация, автоматическое переключение слайдов
+// и скорость смены слайдов в данном режиме(миллисекунды) 
 const sliderOptions = {
   pagination: true,
   autoplay: false,
   autoplayInterval: 5000,
 };
 
+// вызываем функции логики секции, слайдера с переданными данными и параметрами
 document.addEventListener('DOMContentLoaded', () => {
   initProjectsSection();
   initSlider(projectsAdmiral.images, sliderOptions);
 });
 
-
+// создаём функцию логики слайдера в которой описана:
+// логика смены изображений, логика кнопок смены слайдов,
+// логика пагинации, логика смены слайдов и параметров
 function initSlider(content, options) {
   if (!content || !content.length) return;
 
@@ -151,6 +159,9 @@ function initSlider(content, options) {
   }
 }
 
+// создаём функцию логики секции Projects в которой описана:
+// логика сброса заменяемых элементов в секции при смене раздела,
+// логика смены разделов 
 function initProjectsSection() {
   let projectParamDescr = document.querySelectorAll('.projects-params__descr');
   let projectParamsDescrCity = document.querySelector(

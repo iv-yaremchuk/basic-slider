@@ -1,97 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slider</title>
-  <link rel="stylesheet" href="./style.css">
-  <script defer src="./script.js"></script>
-</head>
-<body>
-  <section class="projects-section">
-    <div class="container projects-container">
-      <ul class="projects-object__list">
-        <li class="projects-object__item">
-          <button class="btn projects-object__btn admiral is-active">
-            Rostov-on-Don, Admiral
-            <hr>
-          </button>
-        </li>
-        <li class="projects-object__item">
-          <button class="btn projects-object__btn thieves">
-            Sochi Thieves
-            <hr>
-          </button>
-        </li>
-        <li class="projects-object__item">
-          <button class="btn projects-object__btn patriotic">
-            Rostov-on-Don Patriotic
-            <hr>
-          </button>
-        </li>
-      </ul>
-      <div class="projects-content__wrap">
-        <div class="projects-content-text">
-          <h2 class="title projects__title">Completed<br>projects</h2>
-          <p class="projects__descr">
-            Only a&nbsp;small part of&nbsp;the work performed by&nbsp;our
-            company is presented on&nbsp;the site. For 14&nbsp;years
-            on&nbsp;in&nbsp;the construction <br>market&nbsp;we&nbsp;have
-            made happy more than 1000 families
-          </p>
-          <ul class="projects-params__list">
-            <li class="projects-params__item">
-              <h3 class="subtitle projects-params__subtitle">City:</h3>
-              <p class="projects-params__descr city">
-                Rostov-on-Don<br>LCD admiral
-              </p>
-            </li>
-            <li class="projects-params__item">
-              <h3 class="subtitle projects-params__subtitle">
-                apartment area:
-              </h3>
-              <p class="projects-params__descr area">81&nbsp;m2</p>
-            </li>
-            <li class="projects-params__item">
-              <h3 class="subtitle projects-params__subtitle">
-                Repair time:
-              </h3>
-              <p class="projects-params__descr time">3.5 months</p>
-            </li>
-            <li class="projects-params__item">
-              <h3 class="subtitle projects-params__subtitle">
-                Repair Cost:
-              </h3>
-              <p class="projects-params__descr">Upon request</p>
-            </li>
-          </ul>
-          <nav class="projects-slider-nav">
-            <div class="projects-slider-pagination__wrap"></div>
-          </nav>
-          <!-- <div class="projects-content-slider mobile">
-            <img class="projects-content-image mobile" src="./img/projects/02-projects-mobile.jpg" alt="">
-            <nav class="projects-slider-nav mobile">
-              <button class="btn projects-slider-nav__btn prev mobile">
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                  <circle cx="17.9999" cy="17.9999" r="18.0001" transform="rotate(-180 17.9999 17.9999)" fill="#E3B873"></circle>
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5657 23.478L14.0869 17.9997L19.5657 12.5215L20.3478 13.3035L15.6511 17.9997L20.3478 22.696L19.5657 23.478Z" fill="white" stroke="white" stroke-width="0.75"></path>
-                </svg>
-              </button>
-              <button class="btn projects-slider-nav__btn next mobile">
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                  <circle cx="18.0001" cy="18.0001" r="18.0001" fill="#E3B873"></circle>
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4343 12.522L21.9131 18.0003L16.4343 23.4785L15.6522 22.6965L20.3489 18.0003L15.6522 13.304L16.4343 12.522Z" fill="white" stroke="white" stroke-width="0.75"></path>
-                </svg>
-              </button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <section class="projects-section">
+      <div class="container projects-container">
+        <ul class="projects-object__list">
+          <li class="projects-object__item">
+            <button class="btn projects-object__btn admiral is-active">
+              Rostov-on-Don, Admiral
+              <hr />
+            </button>
+          </li>
+          <li class="projects-object__item">
+            <button class="btn projects-object__btn thieves">
+              Sochi Thieves
+              <hr />
+            </button>
+          </li>
+          <li class="projects-object__item">
+            <button class="btn projects-object__btn patriotic">
+              Rostov-on-Don Patriotic
+              <hr />
+            </button>
+          </li>
+        </ul>
+        <div class="projects-content__wrap">
+          <div class="projects-content-text">
+            <h2 class="title projects__title">Completed<br />projects</h2>
+            <p class="projects__descr">
+              Only a&nbsp;small part of&nbsp;the work performed by&nbsp;our
+              company is presented on&nbsp;the site. For 14&nbsp;years
+              on&nbsp;in&nbsp;the construction <br />market&nbsp;we&nbsp;have
+              made happy more than 1000 families
+            </p>
+            <ul class="projects-params__list">
+              <li class="projects-params__item">
+                <h3 class="subtitle projects-params__subtitle">City:</h3>
+                <p class="projects-params__descr city">
+                  Rostov-on-Don<br />LCD admiral
+                </p>
+              </li>
+              <li class="projects-params__item">
+                <h3 class="subtitle projects-params__subtitle">
+                  apartment area:
+                </h3>
+                <p class="projects-params__descr area">81&nbsp;m2</p>
+              </li>
+              <li class="projects-params__item">
+                <h3 class="subtitle projects-params__subtitle">Repair time:</h3>
+                <p class="projects-params__descr time">3.5 months</p>
+              </li>
+              <li class="projects-params__item">
+                <h3 class="subtitle projects-params__subtitle">Repair Cost:</h3>
+                <p class="projects-params__descr">Upon request</p>
+              </li>
+            </ul>
+            <nav class="projects-slider-nav">
+              <div class="projects-slider-pagination__wrap"></div>
             </nav>
-          </div> -->
-        </div>
-        <div class="projects-content-slider">
-          
+          </div>
+          <div class="projects-content-slider"></div>
         </div>
       </div>
-    </div>
-  </section>
-</body>
+    </section>
+  </body>
 </html>
