@@ -1,6 +1,6 @@
 // Создаём объекты содержащие в себе изображения и текст,
 // заменяемые при смене раздела в секции Projects
-const projectsAdmiral = {
+let projectsAdmiral = {
   images: [
     './img/projects/projects-admiral-first.jpg',
     './img/projects/projects-admiral-second.jpg',
@@ -11,7 +11,7 @@ const projectsAdmiral = {
   time: '3.5 months',
 };
 
-const projectsThieves = {
+let projectsThieves = {
   images: [
     './img/projects/projects-thieves-first.jpg',
     './img/projects/projects-thieves-second.jpg',
@@ -22,7 +22,7 @@ const projectsThieves = {
   time: '4 months',
 };
 
-const projectsPatriotic = {
+let projectsPatriotic = {
   images: [
     './img/projects/projects-patriotic-first.jpg',
     './img/projects/projects-patriotic-second.jpg',
@@ -42,7 +42,7 @@ const sliderPaginationBullets = document.querySelector(
 // создаём объект содержащий дополнительные параметры слайдера,
 // такие как пагинация, автоматическое переключение слайдов
 // и скорость смены слайдов в данном режиме(миллисекунды) 
-const sliderOptions = {
+let sliderOptions = {
   pagination: true,
   autoplay: false,
   autoplayInterval: 5000,
