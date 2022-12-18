@@ -1,62 +1,70 @@
-// Создаём объекты содержащие в себе изображения и текст,
-// заменяемые при смене раздела в секции Projects
-let projectsAdmiral = {
-  images: [
-    './img/projects/projects-admiral-first.jpg',
-    './img/projects/projects-admiral-second.jpg',
-    './img/projects/projects-admiral-third.jpg',
-  ],
-  city: 'Rostov-on-Don <br> LCD admiral',
-  area: '81 m2',
-  time: '3.5 months',
-};
-
-let projectsThieves = {
-  images: [
-    './img/projects/projects-thieves-first.jpg',
-    './img/projects/projects-thieves-second.jpg',
-    './img/projects/projects-thieves-third.jpg',
-  ],
-  city: 'Sochi <br> Thieves',
-  area: '105 m2',
-  time: '4 months',
-};
-
-let projectsPatriotic = {
-  images: [
-    './img/projects/projects-patriotic-first.jpg',
-    './img/projects/projects-patriotic-second.jpg',
-    './img/projects/projects-patriotic-third.jpg',
-  ],
-  city: 'Rostov-on-Don <br> Patriotic',
-  area: '93 m2',
-  time: '3 months',
-};
+// Создаём массив содержащий в себе объекты с изображениями и текстом,
+// заменяемые при смене раздела
+const projectsContentList = [
+  {
+    chapter: 'Rostov-on-Don, Admiral',
+    city: 'Rostov-on-Don <br> LCD admiral',
+    area: '81 m2',
+    time: '3.5 months',
+    cost: 'Upon request',
+    src: './img/projects/01-projects-admiral.jpg',
+  },
+  {
+    chapter: 'Sochi, Thieves',
+    city: 'Sochi <br> Thieves',
+    area: '105 m2',
+    time: '4 months',
+    cost: 'Upon request',
+    src: './img/projects/02-projects-thieves.jpg',
+  },
+  {
+    chapter: 'Rostov-on-Don, Patriotic',
+    city: 'Rostov-on-Don <br> Patriotic',
+    area: '93 m2',
+    time: '3 months',
+    cost: 'Upon request',
+    src: './img/projects/03-projects-patriotic.jpg',
+  },
+];
 
 const sliderImages = document.querySelector('.projects-content-slider');
 const sliderNavigation = document.querySelector('.projects-slider-nav');
 const sliderPaginationBullets = document.querySelector(
   '.projects-slider-pagination__wrap'
 );
+const projectChapterList = document.querySelector('.projects-chapter__list');
+const projectParamsDescrCity = document.querySelector(
+  '.projects-params__item.city__wrap'
+);
+const projectParamsDescrArea = document.querySelector(
+  '.projects-params__item.area__wrap'
+);
+const projectParamsDescrTime = document.querySelector(
+  '.projects-params__item.time__wrap'
+);
+const projectParamsDescrCost = document.querySelector(
+  '.projects-params__item.cost__wrap'
+);
 
 // создаём объект содержащий дополнительные параметры слайдера,
 // такие как пагинация, автоматическое переключение слайдов
-// и скорость смены слайдов в данном режиме(миллисекунды) 
+// и скорость смены слайдов в данном режиме(миллисекунды)
 let sliderOptions = {
   pagination: true,
   autoplay: false,
   autoplayInterval: 5000,
 };
 
-// вызываем функции логики секции, слайдера с переданными данными и параметрами
+// вызываем функцию логики слайдера с переданными данными и
+// параметрами после того, как браузер составит DOM-дерево
 document.addEventListener('DOMContentLoaded', () => {
-  initProjectsSection();
-  initSlider(projectsAdmiral.images, sliderOptions);
+  initSlider(projectsContentList, sliderOptions);
 });
 
 // создаём функцию логики слайдера в которой описана:
 // логика смены изображений, логика кнопок смены слайдов,
-// логика пагинации, логика смены слайдов и параметров
+// логика пагинации, логика смены слайдов и текста,
+// логика параметров слайдера
 function initSlider(content, options) {
   if (!content || !content.length) return;
 
@@ -66,7 +74,7 @@ function initSlider(content, options) {
     autoplay: false,
   };
 
-  initSliderImages();
+  initSliderContent();
   initSliderBtns();
 
   if (options.pagination) {
@@ -77,32 +85,58 @@ function initSlider(content, options) {
     initAutoplay();
   }
 
-  function initSliderImages() {
+  function initSliderContent() {
     content.forEach((image, index) => {
+      let chapter = `<li class="projects-chapter__item">
+      <button class="btn projects-chapter__btn chapter-${index} ${
+        index === 0 ? 'is-active' : ''
+      } "data-index="${index}">
+      ${content[index].chapter}<hr></button></li>`;
+      projectChapterList.innerHTML += chapter;
+      projectChapterList
+        .querySelector('.is-active')
+        .setAttribute('tabindex', '-1');
+      projectChapterList
+        .querySelectorAll('.projects-chapter__btn')
+        .forEach((item) => {
+          item.addEventListener('click', function() {
+            moveSliderImages(this.dataset.index);
+          });
+        });
+
       let img = `<img class="projects-content-image img-${index} ${
         index === 0 ? 'is-active' : ''
-      }" src="${content[index]}" data-index="${index}"></img>`;
+      }" src="${content[index].src}" data-index="${index}"></img>`;
+
       sliderImages.innerHTML += img;
+
+      let city = `<p class="projects-params__descr city city-${index} ${
+        index === 0 ? 'is-active' : ''
+      } "data-index="${index}">${content[index].city}</p>`;
+
+      projectParamsDescrCity.innerHTML += city;
+
+      let area = `<p class="projects-params__descr area area-${index} ${
+        index === 0 ? 'is-active' : ''
+      } "data-index="${index}">${content[index].area}</p>`;
+
+      projectParamsDescrArea.innerHTML += area;
+
+      let time = `<p class="projects-params__descr time time-${index} ${
+        index === 0 ? 'is-active' : ''
+      } "data-index="${index}">${content[index].time}</p>`;
+
+      projectParamsDescrTime.innerHTML += time;
+
+      let cost = `<p class="projects-params__descr cost cost-${index} ${
+        index === 0 ? 'is-active' : ''
+      } "data-index="${index}">${content[index].cost}</p>`;
+
+      projectParamsDescrCost.innerHTML += cost;
     });
   }
 
   function initSliderBtns() {
-    let sliderBtnPrev = `<button class="btn projects-slider-nav__btn prev">
-    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="14" viewBox="0 0 42 14" fill="none">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.63807 13.2761L2.29917e-05 6.63808L6.63807 3.80641e-05L7.58563 0.947606L1.89516 6.63808L7.58563 12.3286L6.63807 13.2761Z" fill="white"></path>
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M0.947579 5.96828L41.4556 5.96829L41.4556 7.30835L0.947578 7.30834L0.947579 5.96828Z" fill="white"></path>
-    </svg>
-  </button>`;
-    let sliderBtnNext = `<button class="btn projects-slider-nav__btn next">
-    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="14" viewBox="0 0 42 14" fill="none">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M35.0451 0L41.6831 6.63804L35.0451 13.2761L34.0975 12.3285L39.788 6.63804L34.0975 0.947567L35.0451 0Z" fill="white"></path>
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M40.7356 7.30784L0.227569 7.30784L0.22757 5.96777L40.7356 5.96778L40.7356 7.30784Z" fill="white"></path>
-    </svg>
-  </button>`;
-
-    sliderNavigation.insertAdjacentHTML('afterbegin', sliderBtnPrev);
-    sliderNavigation.insertAdjacentHTML('beforeend', sliderBtnNext);
-
     sliderNavigation
       .querySelectorAll('.projects-slider-nav__btn')
       .forEach((btn) => {
@@ -137,8 +171,44 @@ function initSlider(content, options) {
   }
 
   function moveSliderImages(num) {
+    projectChapterList
+      .querySelector('.is-active')
+      .removeAttribute('tabindex', '-1');
+    projectChapterList
+      .querySelector('.is-active')
+      .classList.remove('is-active');
+    projectChapterList
+      .querySelector('.chapter-' + num)
+      .classList.add('is-active');
+    projectChapterList
+      .querySelector('.chapter-' + num)
+      .setAttribute('tabindex', '-1');
     sliderImages.querySelector('.is-active').classList.remove('is-active');
     sliderImages.querySelector('.img-' + num).classList.add('is-active');
+    projectParamsDescrCity
+      .querySelector('.is-active')
+      .classList.remove('is-active');
+    projectParamsDescrCity
+      .querySelector('.city-' + num)
+      .classList.add('is-active');
+    projectParamsDescrArea
+      .querySelector('.is-active')
+      .classList.remove('is-active');
+    projectParamsDescrArea
+      .querySelector('.area-' + num)
+      .classList.add('is-active');
+    projectParamsDescrTime
+      .querySelector('.is-active')
+      .classList.remove('is-active');
+    projectParamsDescrTime
+      .querySelector('.time-' + num)
+      .classList.add('is-active');
+    projectParamsDescrCost
+      .querySelector('.is-active')
+      .classList.remove('is-active');
+    projectParamsDescrCost
+      .querySelector('.cost-' + num)
+      .classList.add('is-active');
     if (options.pagination) {
       sliderPaginationBullets
         .querySelector('.is-active')
@@ -157,125 +227,4 @@ function initSlider(content, options) {
       moveSliderImages(nextImg);
     }, options.autoplayInterval);
   }
-}
-
-// создаём функцию логики секции Projects в которой описана:
-// логика сброса заменяемых элементов в секции при смене раздела,
-// логика смены разделов 
-function initProjectsSection() {
-  let projectParamDescr = document.querySelectorAll('.projects-params__descr');
-  let projectParamsDescrCity = document.querySelector(
-    '.projects-params__descr.city'
-  );
-  let projectParamsDescrArea = document.querySelector(
-    '.projects-params__descr.area'
-  );
-  let projectParamsDescrTime = document.querySelector(
-    '.projects-params__descr.time'
-  );
-
-  function resetProjectsSection() {
-    sliderImages.innerHTML = '';
-    sliderPaginationBullets.innerHTML = '';
-    sliderNavigation.firstElementChild.remove();
-    sliderNavigation.lastElementChild.remove();
-    sliderNavigation.style.opacity = 0;
-    projectParamDescr.forEach((descr) => {
-      descr.style.opacity = 0;
-    });
-  }
-
-  let projectObjectBtnAdmiral = document.querySelector(
-    '.projects-object__btn.admiral'
-  );
-  let projectObjectBtnThieves = document.querySelector(
-    '.projects-object__btn.thieves'
-  );
-  let projectObjectBtnPatriotic = document.querySelector(
-    '.projects-object__btn.patriotic'
-  );
-
-  function activeAdmiralBtn() {
-    setTimeout(() => {
-      projectParamDescr.forEach((descr) => {
-        descr.style.opacity = 1;
-      });
-      sliderNavigation.style.opacity = 1;
-      projectParamsDescrCity.innerHTML = projectsAdmiral.city;
-      projectParamsDescrArea.textContent = projectsAdmiral.area;
-      projectParamsDescrTime.textContent = projectsAdmiral.time;
-
-      initSlider(projectsAdmiral.images, sliderOptions);
-    }, 150);
-
-    projectObjectBtnAdmiral.classList.add('is-active');
-    projectObjectBtnAdmiral.setAttribute('tabindex', '-1');
-    projectObjectBtnThieves.classList.remove('is-active');
-    projectObjectBtnThieves.removeAttribute('tabindex', '-1');
-    projectObjectBtnPatriotic.classList.remove('is-active');
-    projectObjectBtnPatriotic.removeAttribute('tabindex', '-1');
-
-    projectObjectBtnAdmiral.removeEventListener('click', activeAdmiralBtn);
-    projectObjectBtnPatriotic.addEventListener('click', activePatrioticBtn);
-    projectObjectBtnThieves.addEventListener('click', activeThievesBtn);
-
-    resetProjectsSection();
-  }
-
-  function activeThievesBtn() {
-    setTimeout(() => {
-      projectParamDescr.forEach((descr) => {
-        descr.style.opacity = 1;
-      });
-      sliderNavigation.style.opacity = 1;
-      projectParamsDescrCity.innerHTML = projectsThieves.city;
-      projectParamsDescrArea.textContent = projectsThieves.area;
-      projectParamsDescrTime.textContent = projectsThieves.time;
-
-      initSlider(projectsThieves.images, sliderOptions);
-    }, 150);
-
-    projectObjectBtnThieves.classList.add('is-active');
-    projectObjectBtnThieves.setAttribute('tabindex', '-1');
-    projectObjectBtnAdmiral.classList.remove('is-active');
-    projectObjectBtnAdmiral.removeAttribute('tabindex', '-1');
-    projectObjectBtnPatriotic.classList.remove('is-active');
-    projectObjectBtnPatriotic.removeAttribute('tabindex', '-1');
-
-    projectObjectBtnThieves.removeEventListener('click', activeThievesBtn);
-    projectObjectBtnAdmiral.addEventListener('click', activeAdmiralBtn);
-    projectObjectBtnPatriotic.addEventListener('click', activePatrioticBtn);
-
-    resetProjectsSection();
-  }
-
-  function activePatrioticBtn() {
-    setTimeout(() => {
-      projectParamDescr.forEach((descr) => {
-        descr.style.opacity = 1;
-      });
-      sliderNavigation.style.opacity = 1;
-      projectParamsDescrCity.innerHTML = projectsPatriotic.city;
-      projectParamsDescrArea.textContent = projectsPatriotic.area;
-      projectParamsDescrTime.textContent = projectsPatriotic.time;
-      initSlider(projectsPatriotic.images, sliderOptions);
-    }, 150);
-
-    projectObjectBtnPatriotic.classList.add('is-active');
-    projectObjectBtnPatriotic.setAttribute('tabindex', '-1');
-    projectObjectBtnThieves.classList.remove('is-active');
-    projectObjectBtnThieves.removeAttribute('tabindex', '-1');
-    projectObjectBtnAdmiral.classList.remove('is-active');
-    projectObjectBtnAdmiral.removeAttribute('tabindex', '-1');
-
-    projectObjectBtnPatriotic.removeEventListener('click', activePatrioticBtn);
-    projectObjectBtnAdmiral.addEventListener('click', activeAdmiralBtn);
-    projectObjectBtnThieves.addEventListener('click', activeThievesBtn);
-
-    resetProjectsSection();
-  }
-
-  projectObjectBtnAdmiral.addEventListener('click', activeAdmiralBtn);
-  projectObjectBtnThieves.addEventListener('click', activeThievesBtn);
-  projectObjectBtnPatriotic.addEventListener('click', activePatrioticBtn);
 }

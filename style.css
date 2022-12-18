@@ -36,6 +36,12 @@
   box-sizing: border-box;
 }
 
+:is(a, button, input, textarea, summary):focus-visible {
+  outline: 2px solid var(--color-bronzegold);
+  outline-offset: 4px;
+  transition: outline 0.2s linear, outline-offset 0.2s linear;
+}
+
 body {
   font-family: 'Nunito Sans', sans-serif;
   line-height: 1.2;
@@ -139,17 +145,17 @@ p {
 .projects-container {
 }
 
-.projects-object__list {
+.projects-chapter__list {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 46px;
 }
 
-.projects-object__item {
+.projects-chapter__item {
   margin-right: 58px;
 }
 
-.projects-object__btn {
+.projects-chapter__btn {
   font-family: 'Yeseva One';
   font-weight: 400;
   font-style: normal;
@@ -161,23 +167,23 @@ p {
   transition: color 0.2s linear;
 }
 
-.projects-object__btn:hover,
-.projects-object__btn:focus-visible {
+.projects-chapter__btn:hover,
+.projects-chapter__btn:focus-visible {
   color: var(--color-harvestgold);
 }
 
-.projects-object__btn:active {
+.projects-chapter__btn:active {
   color: var(--color-bronzegold);
 }
 
-.projects-object__btn hr {
+.projects-chapter__btn hr {
   margin: 0;
   margin-top: -7px;
   border-color: transparent;
   transition: border-color 0.2s linear;
 }
 
-.projects-object__btn.is-active,
+.projects-chapter__btn.is-active,
 .is-active hr {
   color: var(--color-harvestgold);
   border-color: var(--color-harvestgold);
@@ -225,13 +231,22 @@ p {
 .projects-params__descr {
   font-size: 13px;
   line-height: 21px;
-  transition: opacity 0.2s linear;
+  display: none;
+  opacity: 0;
+  animation: fadeIn 0.1s linear;
+}
+
+.projects-params__descr.city.is-active,
+.projects-params__descr.area.is-active,
+.projects-params__descr.time.is-active,
+.projects-params__descr.cost.is-active {
+  display: flex;
+  opacity: 1;
 }
 
 .projects-slider-nav {
   display: flex;
   align-items: center;
-  transition: opacity 0.2s linear;
 }
 
 .projects-slider-nav__btn:hover path,

@@ -4,32 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Slider</title>
+    <title>Basic slider</title>
     <link rel="stylesheet" href="./style.css" />
     <script defer src="./script.js"></script>
   </head>
   <body>
     <section class="projects-section">
       <div class="container projects-container">
-        <ul class="projects-object__list">
-          <li class="projects-object__item">
-            <button class="btn projects-object__btn admiral is-active">
-              Rostov-on-Don, Admiral
-              <hr />
-            </button>
-          </li>
-          <li class="projects-object__item">
-            <button class="btn projects-object__btn thieves">
-              Sochi Thieves
-              <hr />
-            </button>
-          </li>
-          <li class="projects-object__item">
-            <button class="btn projects-object__btn patriotic">
-              Rostov-on-Don Patriotic
-              <hr />
-            </button>
-          </li>
+        <ul class="projects-chapter__list">
         </ul>
         <div class="projects-content__wrap">
           <div class="projects-content-text">
@@ -41,29 +23,35 @@
               made happy more than 1000 families
             </p>
             <ul class="projects-params__list">
-              <li class="projects-params__item">
+              <li class="projects-params__item city__wrap">
                 <h3 class="subtitle projects-params__subtitle">City:</h3>
-                <p class="projects-params__descr city">
-                  Rostov-on-Don<br />LCD admiral
-                </p>
               </li>
-              <li class="projects-params__item">
+              <li class="projects-params__item area__wrap">
                 <h3 class="subtitle projects-params__subtitle">
                   apartment area:
                 </h3>
-                <p class="projects-params__descr area">81&nbsp;m2</p>
               </li>
-              <li class="projects-params__item">
+              <li class="projects-params__item time__wrap">
                 <h3 class="subtitle projects-params__subtitle">Repair time:</h3>
-                <p class="projects-params__descr time">3.5 months</p>
               </li>
-              <li class="projects-params__item">
+              <li class="projects-params__item cost__wrap">
                 <h3 class="subtitle projects-params__subtitle">Repair Cost:</h3>
-                <p class="projects-params__descr">Upon request</p>
               </li>
             </ul>
             <nav class="projects-slider-nav">
+              <button class="btn projects-slider-nav__btn prev">
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="14" viewBox="0 0 42 14" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M6.63807 13.2761L2.29917e-05 6.63808L6.63807 3.80641e-05L7.58563 0.947606L1.89516 6.63808L7.58563 12.3286L6.63807 13.2761Z" fill="white"></path>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M0.947579 5.96828L41.4556 5.96829L41.4556 7.30835L0.947578 7.30834L0.947579 5.96828Z" fill="white"></path>
+                </svg>
+              </button>
               <div class="projects-slider-pagination__wrap"></div>
+              <button class="btn projects-slider-nav__btn next">
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="14" viewBox="0 0 42 14" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M35.0451 0L41.6831 6.63804L35.0451 13.2761L34.0975 12.3285L39.788 6.63804L34.0975 0.947567L35.0451 0Z" fill="white"></path>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M40.7356 7.30784L0.227569 7.30784L0.22757 5.96777L40.7356 5.96778L40.7356 7.30784Z" fill="white"></path>
+                </svg>
+              </button>
             </nav>
           </div>
           <div class="projects-content-slider"></div>
