@@ -1,1 +1,1 @@
-# slider
+# Basic slider
